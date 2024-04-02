@@ -26,15 +26,15 @@ is
 > Quicksort Report:  
 > Average Comparisons: 70483.17  
 > Std Dev Comparisons: 3105.10  
-> Fewest Comparisons: 65183  
 > Most Comparisons: 81103  
+> Fewest Comparisons: 65183  
 > Average Swaps: 38906.33  
 > Std Dev Swaps: 3111.31  
 > Most Swaps: 47840  
 > Fewest Swaps: 32896  
 > Average Max Depth: 28.44  
 > Std Dev Max Depth: 2.01  
-> Lowest Max Depth: 24  
-> Highest Max Depth: 34
+> Highest Max Depth: 34  
+> Lowest Max Depth: 24
 
 I think this demonstrates promise. I'm excited to see if I can produce interesting results when I complete this project.

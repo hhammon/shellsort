@@ -62,7 +62,7 @@ fn partition<T: PartialOrd + Copy>(
             i += 1;
         }
     }
-    
+
     result.swaps += 1;
     a.swap(i, high);
 
@@ -89,16 +89,16 @@ impl QuicksortReport {
         println!("Quicksort Report:");
         println!("Average Comparisons: {:.2}", self.average_comparisons);
         println!("Std Dev Comparisons: {:.2}", self.stddev_comparisons);
-        println!("Fewest Comparisons: {}", self.fewest_comparisons);
         println!("Most Comparisons: {}", self.most_comparisons);
+        println!("Fewest Comparisons: {}", self.fewest_comparisons);
         println!("Average Swaps: {:.2}", self.average_swaps);
         println!("Std Dev Swaps: {:.2}", self.stddev_swaps);
         println!("Most Swaps: {}", self.most_swaps);
         println!("Fewest Swaps: {}", self.fewest_swaps);
         println!("Average Max Depth: {:.2}", self.average_max_depth);
         println!("Std Dev Max Depth: {:.2}", self.stddev_max_depth);
-        println!("Lowest Max Depth: {}", self.lowest_max_depth);
         println!("Highest Max Depth: {}", self.highest_max_depth);
+        println!("Lowest Max Depth: {}", self.lowest_max_depth);
     }
 
 }
