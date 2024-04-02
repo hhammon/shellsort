@@ -28,10 +28,10 @@ is
 > Std Dev Comparisons: 3105.10  
 > Fewest Comparisons: 65183  
 > Most Comparisons: 81103  
-> Average Swaps: 35574.53  
-> Std Dev Swaps: 3109.47  
-> Most Swaps: 44518  
-> Fewest Swaps: 29561  
+> Average Swaps: 38906.33  
+> Std Dev Swaps: 3111.31  
+> Most Swaps: 47840  
+> Fewest Swaps: 32896  
 > Average Max Depth: 28.44  
 > Std Dev Max Depth: 2.01  
 > Lowest Max Depth: 24  

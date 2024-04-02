@@ -62,7 +62,10 @@ fn partition<T: PartialOrd + Copy>(
             i += 1;
         }
     }
+    
+    result.swaps += 1;
     a.swap(i, high);
+
     i
 }
 
