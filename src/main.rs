@@ -1,16 +1,17 @@
-use std::vec;
-
-use argparse::{ArgumentParser, Print};
+use argparse::{ArgumentParser, Print, Store, StoreTrue};
+use gap_sequences::GapSequence;
 use sort::{perform_rounds, ReportError, SortReport};
 
 mod sort;
+mod gap_sequences;
 
 struct Options {
     seed: u64,
     rounds: usize,
     length: usize,
-    gap_count: usize,
-    custom_gaps: String,
+    gap_sequence: String,
+    optimize: bool,
+    optimize_moves: bool,
     quicksort: bool,
 }
 
@@ -19,20 +20,31 @@ fn main() {
         seed: 0,
         rounds: 100,
         length: 100,
-        gap_count: 8,
-        custom_gaps: String::from(""),
+        gap_sequence: String::from(""),
+        optimize: false,
+        optimize_moves: false,
         quicksort: false,
     };
     
-    let seed_help = format!("Seed for random number generator. Default is {}.", options.seed);
-    let rounds_help = format!("Number of rounds to run. Default is {}.", options.rounds);
-    let length_help = format!("Length of the array to be sorted. Default is {}.", options.length);
-    let gap_count_help = format!("Number of gaps to generate. Default is {}.", options.gap_count);
+    let seed_help = format!(
+        "Seed for random number generator. Default is {}.",
+        options.seed,
+    );
+    let rounds_help = format!(
+        "Number of rounds to run. Default is {}.",
+        options.rounds
+    );
+    let length_help = format!(
+        "Length of the array to be sorted. Default is {}.",
+        options.length,
+    );
     
     {
         let mut arg_parser = ArgumentParser::new();
 
-        arg_parser.set_description("Test the performance of Shellsort with different gap sequences.");
+        arg_parser.set_description(
+            "Test the performance of Shellsort with different gap sequences."
+        );
 
         arg_parser.add_option(
             &["-v", "--version"], 
@@ -43,55 +55,64 @@ fn main() {
         arg_parser.refer(&mut options.seed)
         .add_option(
             &["-s", "--seed"], 
-            argparse::Store,
+            Store,
             &seed_help,
         );
 
         arg_parser.refer(&mut options.rounds)
         .add_option(
             &["-r", "--rounds"], 
-            argparse::Store,
+            Store,
             &rounds_help,
         );
 
         arg_parser.refer(&mut options.length)
         .add_option(
             &["-l", "--length"], 
-            argparse::Store,
+            Store,
             &length_help,
         );
 
-        arg_parser.refer(&mut options.gap_count)
+        arg_parser.refer(&mut options.gap_sequence)
         .add_option(
-            &["-g", "--gap-count"], 
-            argparse::Store,
-            &gap_count_help,
+            &["-g", "--gap-sequence"],
+            Store,
+            "Use a gap generator instead of running general test. \
+                Options are 'ciura', 'tokuda', \
+                or a comma-delimited list of integers \
+                (The first value must be '1' to get a proper sort). \
+                This will default to 'tokuda' if not provided.",
         );
 
-        arg_parser.refer(&mut options.custom_gaps)
+        arg_parser.refer(&mut options.optimize)
         .add_option(
-            &["-c", "--custom-gaps"],
-            argparse::Store,
-            "Use custom gaps for shell sort instead of run general test. Should be a comma separated list of positive integers. '1' is already prepended. The gap count option will be ignored.",
+            &["-o", "--optimize"],
+            argparse::StoreTrue,
+            "Adjust the gap sequence until it is optimal for the length.",
+        );
+
+        arg_parser.refer(&mut options.optimize_moves)
+        .add_option(
+            &["-m", "--optimize-moves"],
+            argparse::StoreTrue,
+            "If used with '-o', optimize for number of moves instead of comparisons.",
         );
 
         arg_parser.refer(&mut options.quicksort)
         .add_option(
             &["-q", "--quicksort"],
-            argparse::StoreTrue,
+            StoreTrue,
             "Also run quicksort for comparison.",
         );
         
         arg_parser.parse_args_or_exit();
     }
 
-    if !options.custom_gaps.is_empty() {
-        let mut gaps: Vec<usize> = vec![1];
-        gaps.extend(
-            options.custom_gaps
-            .split(",")
-            .map(|s| s.trim().parse::<usize>().expect("Invalid gap provided."))
-        );
+    if !options.optimize {
+        let gap_sequence = GapSequence::try_from(options.gap_sequence)
+        .expect("Invalid gap sequence provided.");
+
+        let gaps: Vec<usize> = gap_sequence.to_vec(options.length);
 
         let results = perform_rounds(
             options.length,

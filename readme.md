@@ -5,36 +5,36 @@ In addition to Shellsort, I also analyze quicksort for comparison. Shellsort is 
 Already, the output of this program running with these arguments:
 
 ```bash
-cargo run --release -- -q -c 4,10,23,57,132,301,701,1750 -l 5000
+cargo run --release -- -l 1000000 -q
 ```
 
 is
 
-> Sorting results on array of length 5000 for 100 round(s).  
-> Shell sort performed with gap sequence: [1, 4, 10, 23, 57, 132, 301, 701, 1750]
+> Sorting results on array of length 1000000 for 100 round(s).  
+> Shell sort performed with gap sequence: [1, 4, 9, 20, 46, 103, 233, 525, 1182, 2660, 5985, 13467, 30301, 68178, 153401, 345152, 776591]
 >
 > Shellsort Report:  
-> Average comparisons: 86035.78  
-> Std Dev comparisons: 470.05  
-> Most comparisons: 87248  
-> Fewest comparisons: 85054  
-> Average moves: 88326.13  
-> Std Dev moves: 473.84  
-> Most moves: 89565  
-> Fewest moves: 87306
+> Average comparisons: 32062308.64  
+> Std Dev comparisons: 27695.78  
+> Most comparisons: 32154230  
+> Fewest comparisons: 31988477  
+> Average moves: 32533467.39  
+> Std Dev moves: 27950.68  
+> Most moves: 32624947  
+> Fewest moves: 32459391
 >
 > Quicksort Report:  
-> Average Comparisons: 70483.17  
-> Std Dev Comparisons: 3105.10  
-> Most Comparisons: 81103  
-> Fewest Comparisons: 65183  
-> Average Swaps: 38906.33  
-> Std Dev Swaps: 3111.31  
-> Most Swaps: 47840  
-> Fewest Swaps: 32896  
-> Average Max Depth: 28.44  
-> Std Dev Max Depth: 2.01  
-> Highest Max Depth: 34  
-> Lowest Max Depth: 24
+> Average Comparisons: 24814148.41  
+> Std Dev Comparisons: 688199.83  
+> Most Comparisons: 27118043  
+> Fewest Comparisons: 23774201  
+> Average Swaps: 13165942.89  
+> Std Dev Swaps: 611301.86  
+> Most Swaps: 14944213  
+> Fewest Swaps: 11830624  
+> Average Max Depth: 50.14  
+> Std Dev Max Depth: 2.29  
+> Highest Max Depth: 57  
+> Lowest Max Depth: 46
 
-I think this demonstrates promise. I'm excited to see if I can produce interesting results when I complete this project.
+I think this shows promise. I'm excited to see if I can produce interesting results when I complete this project.
