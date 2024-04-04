@@ -1,3 +1,5 @@
+use std::cmp::{max, min};
+
 use rand::{rngs::StdRng, Rng, SeedableRng};
 
 use self::{
@@ -28,11 +30,34 @@ impl ShuffledAndSorted {
         }
     }
 
-    pub fn shuffle(&mut self) {
+    pub fn shuffle(
+        &mut self,
+        max_distance: f64,
+        probabilty: f64,
+    ) -> Result<(), String> {
+        if probabilty < 0.0 || probabilty > 1.0 {
+            return Err("Probability must be between 0.0 and 1.0".to_string());
+        }
+        
         for i in 0..self.shuffled.len() {
-            let j = self.rng.gen_range(0..self.shuffled.len());
+            if !self.rng.gen_bool(probabilty) {
+                continue;
+            }
+
+            let low = max(
+                0,
+                i as isize - max_distance as isize
+            ) as usize;
+            let high = min(
+                self.shuffled.len() as isize - 1,
+                i as isize + max_distance as isize
+            ) as usize;
+
+            let j = self.rng.gen_range(low..=high);
             self.shuffled.swap(i, j);
         }
+
+        Ok(())
     }
 
     fn clone_shuffled(&mut self) {
@@ -66,7 +91,9 @@ pub fn perform_rounds(
     rounds: usize,
     gaps: &Vec<usize>,
     quicksort: bool,
-) -> SortResults {
+    max_distance: f64,
+    probability: f64,
+) -> Result<SortResults, String> {
     let mut a: ShuffledAndSorted = ShuffledAndSorted::new(length, seed);
 
     let mut results: SortResults = if quicksort {
@@ -79,7 +106,7 @@ pub fn perform_rounds(
     };
 
     for _ in 0..rounds {
-        a.shuffle();
+        a.shuffle(max_distance, probability)?;
 
         match results {
             SortResults::ShellsortOnly(ref mut shellsort_results) => {
@@ -95,7 +122,7 @@ pub fn perform_rounds(
         }
     }
 
-    results
+    Ok(results)
 }
 
 pub enum ReportError {

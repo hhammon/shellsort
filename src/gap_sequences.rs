@@ -1,4 +1,4 @@
-use std::num::ParseIntError;
+use std::{num::ParseIntError, str::FromStr};
 
 use self::{
     n_smooth::list_n_smooth,
@@ -46,10 +46,10 @@ impl GapSequence {
     }
 }
 
-impl TryFrom<String> for GapSequence {
-    type Error = ParseIntError;
+impl FromStr for GapSequence {
+    type Err = ParseIntError;
 
-    fn try_from(value: String) -> Result<Self, Self::Error> {
+    fn from_str(value: &str) -> Result<Self, Self::Err> {
         match value.to_lowercase().as_str() {
             "" => Ok(Self::Lee2021),
             "shell_1959" => Ok(Self::Shell1959),

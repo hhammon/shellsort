@@ -52,7 +52,7 @@ fn partition<T: PartialOrd + Copy>(
     high: usize,
     result: &mut QuicksortResult
 ) -> usize {
-    let pivot = a[high];
+    let pivot = a[(high + low) >> 1];
     let mut i = low;
     for j in low..high {
         result.comparisons += 1;
