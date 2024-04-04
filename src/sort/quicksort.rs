@@ -3,9 +3,9 @@ use super::ReportError;
 
 #[derive(Debug)]
 pub struct QuicksortResult {
-    pub comparisons: u32,
-    pub swaps: u32,
-    pub max_depth: u32,
+    pub comparisons: u64,
+    pub swaps: u64,
+    pub max_depth: u64,
 }
 
 pub fn quicksort<T: PartialOrd + Copy>(
@@ -27,7 +27,7 @@ fn quicksort_recursive<T: PartialOrd + Copy>(
     low: usize,
     high: usize,
     result: &mut QuicksortResult,
-    depth: u32,
+    depth: u64,
 ) {
     let depth = depth + 1;
     if depth > result.max_depth {
@@ -38,12 +38,12 @@ fn quicksort_recursive<T: PartialOrd + Copy>(
         return;
     }
 
-    let p = partition(a, low, high, result);
+    let (pl, ph) = partition(a, low, high, result);
 
-    if p > 0 {
-        quicksort_recursive(a, low, p - 1, result, depth);
+    if pl > 0 {
+        quicksort_recursive(a, low, pl - 1, result, depth);
     }
-    quicksort_recursive(a, p + 1, high, result, depth);
+    quicksort_recursive(a, ph + 1, high, result, depth);
 }
 
 fn partition<T: PartialOrd + Copy>(
@@ -51,22 +51,30 @@ fn partition<T: PartialOrd + Copy>(
     low: usize,
     high: usize,
     result: &mut QuicksortResult
-) -> usize {
+) -> (usize, usize) {
     let pivot = a[(high + low) >> 1];
-    let mut i = low;
-    for j in low..high {
+
+    let mut il = low;
+    let mut im = low;
+    let mut ih = high;
+
+    while im <= ih {
         result.comparisons += 1;
-        if a[j] <= pivot {
+        if a[im] < pivot {
             result.swaps += 1;
-            a.swap(i, j);
-            i += 1;
+            a.swap(il, im);
+            il += 1;
+            im += 1;
+        } else if a[im] > pivot {
+            result.swaps += 1;
+            a.swap(im, ih);
+            ih -= 1;
+        } else {
+            im += 1;
         }
     }
 
-    result.swaps += 1;
-    a.swap(i, high);
-
-    i
+    (il, ih)
 }
 
 pub struct QuicksortReport {
@@ -76,12 +84,12 @@ pub struct QuicksortReport {
     pub stddev_comparisons: f64,
     pub stddev_swaps: f64,
     pub stddev_max_depth: f64,
-    pub fewest_comparisons: u32,
-    pub fewest_swaps: u32,
-    pub lowest_max_depth: u32,
-    pub most_comparisons: u32,
-    pub most_swaps: u32,
-    pub highest_max_depth: u32,
+    pub fewest_comparisons: u64,
+    pub fewest_swaps: u64,
+    pub lowest_max_depth: u64,
+    pub most_comparisons: u64,
+    pub most_swaps: u64,
+    pub highest_max_depth: u64,
 }
 
 impl QuicksortReport {
@@ -100,7 +108,6 @@ impl QuicksortReport {
         println!("Highest Max Depth: {}", self.highest_max_depth);
         println!("Lowest Max Depth: {}", self.lowest_max_depth);
     }
-
 }
 
 impl TryFrom<Vec<QuicksortResult>> for QuicksortReport {
@@ -118,9 +125,9 @@ impl TryFrom<Vec<QuicksortResult>> for QuicksortReport {
             stddev_comparisons: 0.0,
             stddev_swaps: 0.0,
             stddev_max_depth: 0.0,
-            fewest_comparisons: u32::MAX,
-            fewest_swaps: u32::MAX,
-            lowest_max_depth: u32::MAX,
+            fewest_comparisons: u64::MAX,
+            fewest_swaps: u64::MAX,
+            lowest_max_depth: u64::MAX,
             most_comparisons: 0,
             most_swaps: 0,
             highest_max_depth: 0,

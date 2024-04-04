@@ -24,17 +24,17 @@ is
 > Fewest moves: 32371866
 >
 > Quicksort Report:  
-> Average Comparisons: 25669088.58  
-> Std Dev Comparisons: 692223.18  
-> Most Comparisons: 28009228  
-> Fewest Comparisons: 24303774  
-> Average Swaps: 14493386.62  
-> Std Dev Swaps: 553845.48  
-> Most Swaps: 15911666  
-> Fewest Swaps: 13178567  
-> Average Max Depth: 54.37  
-> Std Dev Max Depth: 2.36  
-> Highest Max Depth: 61  
-> Lowest Max Depth: 50
+> Average Comparisons: 25356610.00  
+> Std Dev Comparisons: 681667.07  
+> Most Comparisons: 28422334  
+> Fewest Comparisons: 24341364  
+> Average Swaps: 24689906.01  
+> Std Dev Swaps: 681687.29  
+> Most Swaps: 27755948  
+> Fewest Swaps: 23674755  
+> Average Max Depth: 49.93  
+> Std Dev Max Depth: 2.29  
+> Highest Max Depth: 57  
+> Lowest Max Depth: 46
 
 I think this shows promise. I'm excited to see if I can produce interesting results when I complete this project.

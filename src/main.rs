@@ -176,7 +176,7 @@ fn main() {
             max_distance,
             options.probability * 100.0,
         );
-        println!("Shell sort performed with gap sequence: {:?}", gaps);
+        println!("Shellsort performed with gap sequence: {:?}", gaps);
         println!();
 
         let results = perform_rounds(

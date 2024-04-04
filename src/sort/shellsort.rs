@@ -3,8 +3,8 @@ use super::ReportError;
 
 #[derive(Debug)]
 pub struct ShellsortResult {
-    pub comparisons: u32,
-    pub moves: u32,
+    pub comparisons: u64,
+    pub moves: u64
 }
 
 pub fn shellsort<T: PartialOrd + Copy>(
@@ -46,10 +46,10 @@ pub struct ShellsortReport {
     pub average_moves: f64,
     pub stddev_comparisons: f64,
     pub stddev_moves: f64,
-    pub fewest_comparisons: u32,
-    pub fewest_moves: u32,
-    pub most_comparisons: u32,
-    pub most_moves: u32,
+    pub fewest_comparisons: u64,
+    pub fewest_moves: u64,
+    pub most_comparisons: u64,
+    pub most_moves: u64,
 }
 
 impl ShellsortReport {
@@ -79,8 +79,8 @@ impl TryFrom<Vec<ShellsortResult>> for ShellsortReport {
             average_moves: 0.0,
             stddev_comparisons: 0.0,
             stddev_moves: 0.0,
-            fewest_comparisons: u32::MAX,
-            fewest_moves: u32::MAX,
+            fewest_comparisons: u64::MAX,
+            fewest_moves: u64::MAX,
             most_comparisons: 0,
             most_moves: 0,
         };
