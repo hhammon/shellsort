@@ -62,19 +62,19 @@ mod tests {
 	use super::*;
 
 	#[test]
-	fn test_list_n_smooth_1_1000() {
+	fn test_list_n_smooth_1() {
 		let smooths = list_n_smooth(1, 1000);
 		assert_eq!(smooths, vec![1]);
 	}
 
 	#[test]
-	fn test_list_n_smooth_2_1000() {
+	fn test_list_n_smooth_2() {
 		let smooths = list_n_smooth(2, 1000);
 		assert_eq!(smooths, vec![1, 2, 4, 8, 16, 32, 64, 128, 256, 512]);
 	}
 
 	#[test]
-	fn test_list_n_smooth_3_1000() {
+	fn test_list_n_smooth_3() {
 		let smooths = list_n_smooth(3, 1000);
 		assert_eq!(smooths, vec![
 			1, 2, 3, 4, 6, 8, 9, 12, 16, 18, 24, 27, 32, 36, 48, 54, 64, 
@@ -84,7 +84,7 @@ mod tests {
 	}
 
 	#[test]
-	fn test_list_n_smooth_4_1000() {
+	fn test_list_n_smooth_4() {
 		let smooths = list_n_smooth(4, 1000);
 		assert_eq!(smooths, vec![
 			1, 2, 3, 4, 6, 8, 9, 12, 16, 18, 24, 27, 32, 36, 48, 54, 64, 
@@ -94,7 +94,7 @@ mod tests {
 	}
 
 	#[test]
-	fn test_list_n_smooth_5_1000() {
+	fn test_list_n_smooth_5() {
 		let smooths = list_n_smooth(5, 400);
 		assert_eq!(smooths, vec![
 			1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 16, 18, 20, 24, 25, 27, 30, 

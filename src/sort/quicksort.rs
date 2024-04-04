@@ -193,19 +193,16 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_quicksort_5() {
+    fn test_quicksort() {
         let mut a = vec![3, 2, 1, 4, 5];
         quicksort(&mut a);
 
-        assert_eq!(a, vec![1, 2, 3, 4, 5]);
-    }
+        assert_eq!(a, vec![1, 2, 3, 4, 5], "sort 5 values");
 
-    #[test]
-    fn test_quicksort_10() {
         let mut a = vec![3, 2, 1, 4, 10, 5, 9, 8, 7, 6];
         quicksort(&mut a);
 
-        assert_eq!(a, vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+        assert_eq!(a, vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "sort 10 values");
     }
 
     #[test]

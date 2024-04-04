@@ -15,82 +15,22 @@ mod tests {
 	use super::*;
 
 	#[test]
-	fn test_gcd_1_1() {
-		assert_eq!(gcd(1, 1), 1);
-	}
-
-	#[test]
-	fn test_gcd_2_1() {
-		assert_eq!(gcd(2, 1), 1);
-	}
-
-	#[test]
-	fn test_gcd_1_2() {
-		assert_eq!(gcd(1, 2), 1);
-	}
-
-	#[test]
-	fn test_gcd_2_2() {
-		assert_eq!(gcd(2, 2), 2);
-	}
-
-	#[test]
-	fn test_gcd_3_2() {
-		assert_eq!(gcd(3, 2), 1);
-	}
-
-	#[test]
-	fn test_gcd_2_3() {
-		assert_eq!(gcd(2, 3), 1);
-	}
-
-	#[test]
-	fn test_gcd_3_3() {
-		assert_eq!(gcd(3, 3), 3);
-	}
-
-	#[test]
-	fn test_gcd_4_2() {
-		assert_eq!(gcd(4, 2), 2);
-	}
-
-	#[test]
-	fn test_gcd_2_4() {
-		assert_eq!(gcd(2, 4), 2);
-	}
-
-	#[test]
-	fn test_gcd_4_4() {
-		assert_eq!(gcd(4, 4), 4);
-	}
-
-	#[test]
-	fn test_gcd_5_2() {
-		assert_eq!(gcd(5, 2), 1);
-	}
-
-	#[test]
-	fn test_gcd_2_5() {
-		assert_eq!(gcd(2, 5), 1);
-	}
-
-	#[test]
-	fn test_gcd_5_5() {
-		assert_eq!(gcd(5, 5), 5);
-	}
-
-	#[test]
-	fn test_gcd_6_2() {
-		assert_eq!(gcd(6, 2), 2);
-	}
-
-	#[test]
-	fn test_gcd_2_6() {
-		assert_eq!(gcd(2, 6), 2);
-	}
-
-	#[test]
-	fn test_gcd_6_6() {
-		assert_eq!(gcd(6, 6), 6);
+	fn test_gcd() {
+		assert_eq!(gcd(1, 1), 1, "gcd of 1 and 1 is 1");
+		assert_eq!(gcd(2, 1), 1, "gcd of 2 and 1 is 1");
+		assert_eq!(gcd(1, 2), 1, "gcd of 1 and 2 is 1");
+		assert_eq!(gcd(2, 2), 2, "gcd of 2 and 2 is 2");
+		assert_eq!(gcd(3, 2), 1, "gcd of 3 and 2 is 1");
+		assert_eq!(gcd(2, 3), 1, "gcd of 2 and 3 is 1");
+		assert_eq!(gcd(3, 3), 3, "gcd of 3 and 3 is 3");
+		assert_eq!(gcd(4, 2), 2, "gcd of 4 and 2 is 2");
+		assert_eq!(gcd(2, 4), 2, "gcd of 2 and 4 is 2");
+		assert_eq!(gcd(4, 4), 4, "gcd of 4 and 4 is 4");
+		assert_eq!(gcd(5, 2), 1, "gcd of 5 and 2 is 1");
+		assert_eq!(gcd(2, 5), 1, "gcd of 2 and 5 is 1");
+		assert_eq!(gcd(5, 5), 5, "gcd of 5 and 5 is 5");
+		assert_eq!(gcd(6, 2), 2, "gcd of 6 and 2 is 2");
+		assert_eq!(gcd(2, 6), 2, "gcd of 2 and 6 is 2");
+		assert_eq!(gcd(6, 6), 6, "gcd of 6 and 6 is 6");
 	}
 }
