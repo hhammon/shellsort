@@ -116,6 +116,14 @@ fn main() {
 
         let gaps: Vec<usize> = gap_sequence.to_vec(options.length);
 
+        println!(
+            "Sorting results on array of length {} for {} round(s).", 
+            options.length,
+            options.rounds,
+        );
+        println!("Shell sort performed with gap sequence: {:?}", gaps);
+        println!();
+
         let results = perform_rounds(
             options.length,
             options.seed,
@@ -128,14 +136,6 @@ fn main() {
 
         match report {
             Ok(report) => {
-                println!(
-                    "Sorting results on array of length {} for {} round(s).", 
-                    options.length,
-                    options.rounds,
-                );
-                println!("Shell sort performed with gap sequence: {:?}", gaps);
-                println!();
-
                 report.print();
             },
             Err(ReportError::EmptyResults) => {
