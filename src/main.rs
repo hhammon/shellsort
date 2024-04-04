@@ -77,11 +77,8 @@ fn main() {
         .add_option(
             &["-g", "--gap-sequence"],
             Store,
-            "Use a gap generator instead of running general test. \
-                Options are 'ciura', 'tokuda', \
-                or a comma-delimited list of integers \
-                (The first value must be '1' to get a proper sort). \
-                This will default to 'tokuda' if not provided.",
+            "Specifies which gap sequence should be used. \
+                Options are given by running this program with -g ls.",
         );
 
         arg_parser.refer(&mut options.optimize)
@@ -106,6 +103,11 @@ fn main() {
         );
         
         arg_parser.parse_args_or_exit();
+    }
+
+    if options.gap_sequence.trim().to_lowercase() == "ls" {
+        println!(include_str!("gap_sequences.txt"));
+        return;
     }
 
     if !options.optimize {

@@ -11,17 +11,17 @@ cargo run --release -- -l 1000000 -q
 is
 
 > Sorting results on array of length 1000000 for 100 round(s).  
-> Shell sort performed with gap sequence: [1, 4, 9, 20, 46, 103, 233, 525, 1182, 2660, 5985, 13467, 30301, 68178, 153401, 345152, 776591]
+> Shell sort performed with gap sequence: [1, 4, 9, 20, 45, 102, 230, 516, 1158, 2599, 5831, 13082, 29351, 65853, 147748, 331490, 743735]
 >
 > Shellsort Report:  
-> Average comparisons: 32062308.64  
-> Std Dev comparisons: 27695.78  
-> Most comparisons: 32154230  
-> Fewest comparisons: 31988477  
-> Average moves: 32533467.39  
-> Std Dev moves: 27950.68  
-> Most moves: 32624947  
-> Fewest moves: 32459391
+> Average comparisons: 31954418.22  
+> Std Dev comparisons: 18439.27  
+> Most comparisons: 32005651  
+> Fewest comparisons: 31896832  
+> Average moves: 32429146.81  
+> Std Dev moves: 18605.96  
+> Most moves: 32480327  
+> Fewest moves: 32371866
 >
 > Quicksort Report:  
 > Average Comparisons: 24814148.41  

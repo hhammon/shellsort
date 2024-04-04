@@ -1,0 +1,60 @@
+Available Gap Sequences:
+    shell_1959:
+        Shell, 1959
+        Values depend on length of array.
+    frank_lazarus_1960:
+        Frank & Lazarus, 1963
+        Values depend on length of array.
+    hibbard_1963:
+        Hibbard, 1963
+        https://oeis.org/A000225
+    papernov_stasevich_1965:
+        Papernov & Stasevich, 1964
+        https://oeis.org/A083318
+    pratt_1971:
+        Pratt, 1971
+        https://oeis.org/A003586
+    knuth_1973:
+        Knuth, 1973
+        https://oeis.org/A003462
+    sedgewick_1982:
+        Sedgewick, 1982
+        https://oeis.org/A036562
+    incerpi_sedgewick_1985:
+        Incerpi & Sedgewick, 1985
+        https://oeis.org/A036569
+    sedgewick_1986:
+        Sedgewick, 1986
+        https://oeis.org/A033622
+    gonnet_baezayates_1991:
+        Gonnet & Baeza-Yates, 1991
+        Values depend on length of array.
+    tokuda_1992:
+        Tokuda, 1992
+        https://oeis.org/A108870
+    ciura_2001:
+        Ciura, 2001
+        https://oeis.org/A102549
+        Note: This sequence is empirically, 
+        not formulaically, derived, and so 
+        will terminate at 1750. This limits
+        its effectiveness for large arrays.
+    lee_2021:
+        Lee, 2021
+        https://oeis.org/A366726
+
+The default option is 'lee_2021'.
+
+`-g ls` will display this message.
+
+Custom Gap Sequence:
+
+Any option not matching the list above will be 
+treated as a custom gap sequence. Provide a
+comma-delimited list of integers. It should
+be an increasing sequence and will only
+properly sort if it includes '1'. The pass
+for Shellsort at 1 is a regular insertion sort.
+
+Example:
+    -g 1,3,7,15,31,63,127,255,511,1023
